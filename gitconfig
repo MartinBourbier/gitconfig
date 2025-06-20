@@ -1,0 +1,63 @@
+[user]
+    name = # Fill in
+    email = # Fill in
+	signingkey = # Fill in
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	line-numbers = true
+	true-color = always
+[merge]
+	conflictstyle = zdiff3
+[pull]
+	rebase = true
+	ff = only
+[push]
+	default = current
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
+[submodule]
+	recurse = true
+[merge]
+	conflictStyle = diff3
+[log]
+	follow = true
+[core]
+	editor = vim
+	autocrlf = false
+[rebase]
+	autosquash = true
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
+[gpg]
+	format = ssh
+[maintenance]
+	repo = /home/mordork/linux
+	repo = /home/mordork/rust
+
+[alias]
+	pf = "push --force-with-lease --force-if-includes"
+    l = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    lh = "log --color --graph --pretty=format:'%Cred%H%Creset -%C(yellow)%d%Creset %s' --abbrev-commit"
+	fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+	htmldiff = "!git show | delta --no-gitconfig --file-decoration-style blue --hunk-header-decoration-style blue | ansifilter --html > /tmp/diff.html"
+	rg = "!rg --json -C 2 \"$@\" | delta"
+    an = "commit --amend --no-edit"
+    head = "rev-parse HEAD"
+
+[includeIf "gitdir:~/workspace/"]
+	path = "~/.gitconfig.1"
+[commit]
+	gpgsign = true
+	verbose = true
+[fetch]
+	prune = true
+	recurseSubmodules = true
